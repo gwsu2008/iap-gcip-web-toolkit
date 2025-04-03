@@ -15,7 +15,7 @@
     "bootstrap": "^4.5.0",
     "firebase": "^9.8.3",
     "firebaseui": "^6.0.0",
-    "gcip-iap": "^1.0.1",
+    "gcip-iap": "2.0.0",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

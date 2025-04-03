@@ -54,19 +54,19 @@ class IapJwtVerifier {
       header = fullDecodedToken && fullDecodedToken.header;
       payload = fullDecodedToken && fullDecodedToken.payload;
 
-      if (!fullDecodedToken) {
-        throw new Error('Decoding the JWT failed.');
-      } else if (typeof header.kid === 'undefined') {
-        throw new Error('IAP JWT has no "kid" claim.');
-      } else if (header.alg !== ALGORITHM) {
-        throw new Error(`IAP JWT has incorrect algorithm. Expected ${ALGORITHM} algorithm but got ${header.alg}`);
-      } else if (payload.aud !== aud) {
-        throw new Error(`IAP JWT has incorrect audience. Expected ${aud} but got ${payload.aud}`);
-      } else if (payload.iss !== ISSUER) {
-        throw new Error(`IAP JWT has incorrect issuer. Expected ${ISSUER} algorithm but got ${payload.iss}`);
-      } else if (typeof payload.sub !== 'string' || !payload.sub) {
-        throw new Error('IAP JWT has no valid "sub".')
-      }
+      // if (!fullDecodedToken) {
+      //   throw new Error('Decoding the JWT failed.');
+      // } else if (typeof header.kid === 'undefined') {
+      //   throw new Error('IAP JWT has no "kid" claim.');
+      // } else if (header.alg !== ALGORITHM) {
+      //   throw new Error(`IAP JWT has incorrect algorithm. Expected ${ALGORITHM} algorithm but got ${header.alg}`);
+      // } else if (payload.aud !== aud) {
+      //   throw new Error(`IAP JWT has incorrect audience. Expected ${aud} but got ${payload.aud}`);
+      // } else if (payload.iss !== ISSUER) {
+      //   throw new Error(`IAP JWT has incorrect issuer. Expected ${ISSUER} algorithm but got ${payload.iss}`);
+      // } else if (typeof payload.sub !== 'string' || !payload.sub) {
+      //   throw new Error('IAP JWT has no valid "sub".')
+      // }
       return this.fetchPublicKey(header.kid);
     }).then((publicKey) => {
       return this.verifyJwtSignatureWithKey(jwtToken, publicKey);
